@@ -35,16 +35,14 @@ def main():
 	Rflat = np.full_like(plc.Rdet,np.nan)
 	Bflat = np.full_like(plc.Rdet,np.nan)
 
-	fnpickle = '/home/data/output/20210219/fasttau3/taus.pkl'
-	biases,taus = pkl.load(open(fnpickle,'r'))
+	#fnpickle = '/home/data/output/20210219/fasttau3/taus.pkl'
+	#biases,taus = pkl.load(open(fnpickle,'r'))
 	#tau0 = np.full_like(taus, np.nan)
-	tau0 = 100 #ms
+	#tau0 = 100 #ms
 
 	colors = plt.cm.jet(np.linspace(0,1,int(max(biases)+1)))
-	#for row in [2]:
 	for row in range(33):
 		for col in [8,9]:
-		#for col in range(24):
 
 			if not doplot:
 				continue
@@ -77,8 +75,8 @@ def main():
 
 			ax1 = plt.subplot(gs[1])
 			ax1.plot(plc.Rdet[row,col,:xtail]/plc.R[row,col],abs(Lpg[row,col,:xtail]),color='b', label='loop gain from P-R')
-			Rtaus=np.interp(biases[::-1],plc.B[col,::-1],plc.Rdet[row,col,::-1])
-			ax1.scatter(Rtaus/plc.R[row,col],tau0/taus[0,::-1,row,col], s=80,c='r', marker='^',label='tau0(100 ms)/tau')	
+			#Rtaus=np.interp(biases[::-1],plc.B[col,::-1],plc.Rdet[row,col,::-1])
+			#ax1.scatter(Rtaus/plc.R[row,col],tau0/taus[0,::-1,row,col], s=80,c='r', marker='^',label='tau0(100 ms)/tau')	
 			ax1.axvline(x=np.nanmin(Rflat[row,col])/plc.R[row,col],color='k',linestyle='--')
 			ax1.axvline(x=np.nanmax(Rflat[row,col])/plc.R[row,col],color='k',linestyle='--')
 			ax1.set_ylim(1,1e4)
